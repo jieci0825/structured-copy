@@ -1,0 +1,80 @@
+{
+    "name": "structured-copy",
+    "displayName": "Structured Copy",
+    "description": "将编辑器选区复制为包含文件路径、范围信息和语言标识的结构化引用内容。",
+    "version": "0.0.1",
+    "publisher": "local",
+    "license": "MIT",
+    "engines": {
+        "vscode": "^1.96.0"
+    },
+    "categories": [
+        "Other"
+    ],
+    "keywords": [
+        "vscode-extension",
+        "structured-copy",
+        "clipboard",
+        "snippet"
+    ],
+    "activationEvents": [
+        "onStartupFinished",
+        "onCommand:structuredCopy.copySelection"
+    ],
+    "main": "./dist/extension.js",
+    "scripts": {
+        "compile": "tsc -p ./tsconfig.json && tsc-alias -p ./tsconfig.json",
+        "watch": "tsc-watch -p ./tsconfig.json --onSuccess \"tsc-alias -p ./tsconfig.json\"",
+        "check-types": "tsc --noEmit -p ./tsconfig.json",
+        "verify:step5": "npm run compile && node ./scripts/verify-step5.js",
+        "vscode:prepublish": "npm run compile"
+    },
+    "contributes": {
+        "commands": [
+            {
+                "command": "structuredCopy.copySelection",
+                "title": "Structured Copy"
+            }
+        ],
+        "menus": {
+            "editor/context": [
+                {
+                    "command": "structuredCopy.copySelection",
+                    "group": "navigation@100",
+                    "when": "editorTextFocus && editorHasSelection"
+                }
+            ]
+        },
+        "keybindings": [
+            {
+                "command": "structuredCopy.copySelection",
+                "key": "ctrl+shift+alt+c",
+                "mac": "cmd+shift+alt+c",
+                "when": "editorTextFocus && editorHasSelection"
+            }
+        ],
+        "configuration": {
+            "title": "Structured Copy",
+            "properties": {
+                "structuredCopy.enableCodeLens": {
+                    "type": "boolean",
+                    "default": true,
+                    "description": "启用 Structured Copy 的 CodeLens 入口。"
+                },
+                "structuredCopy.codeLensDebounceMs": {
+                    "type": "number",
+                    "default": 200,
+                    "minimum": 0,
+                    "markdownDescription": "控制 Structured Copy CodeLens 在选区稳定后显示的延迟时间，单位为毫秒。默认值为 `200`。"
+                }
+            }
+        }
+    },
+    "devDependencies": {
+        "@types/node": "^25.6.0",
+        "@types/vscode": "^1.115.0",
+        "tsc-alias": "^1.8.16",
+        "tsc-watch": "^7.2.0",
+        "typescript": "^6.0.2"
+    }
+}
