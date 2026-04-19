@@ -118,8 +118,8 @@ src/
 - 在编辑器右键菜单中增加 `Structured Copy`。
 - 通过 `when` 条件限制菜单只在编辑器且存在非空选区时显示。
 - 配置默认快捷键：
-  - macOS：`cmd+shift+alt+c`
-  - Windows / Linux：`ctrl+shift+alt+c`
+  - macOS：`cmd+alt+c`
+  - Windows / Linux：`ctrl+alt+c`
 - 确认快捷键不会覆盖普通复制行为。
 
 ### 产出

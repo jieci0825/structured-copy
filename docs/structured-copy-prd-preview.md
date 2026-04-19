@@ -166,8 +166,8 @@ Structured Copy
 
 推荐默认值：
 
-- macOS：`cmd+shift+alt+c`
-- Windows / Linux：`ctrl+shift+alt+c`
+- macOS：`cmd+alt+c`
+- Windows / Linux：`ctrl+alt+c`
 
 最终快捷键允许用户在 VS Code 中自行修改。
 
